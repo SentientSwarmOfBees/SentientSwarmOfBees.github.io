@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stream BINGO</title>
+	<style>
+		table{
+		  width: 1000px;
+		}
+		td {
+		  width: 20%;
+		  padding: 15px;
+		  border: 1px solid black;
+		  border-radius: 200px;
+		  text-align: center;
+		  background-color: #BBBBBB;
+		}
+		th {
+		padding: 35px;
+		  
+}
+		table.center {
+		  margin-left: auto; 
+		  margin-right: auto;
+		}
+</style>
+  </head>
+  <body>
+  
+	<table class="center">
+	<!-- here goes our data! -->
+	</table>
+  </body>
+<script>
+	//I don't know javascript and am sorry for the atrocities I'm about to commit
+	
+	let boxes = ["PIPE!", "Doggy", "Instalock Jett", "Instalock Rayna", "Cypher stolen", 
+				"ACE", "no comms", "squeaky doggo", "9", "10", 
+				"11", "q", "w", "e", "r", 
+				"t", "a", "s", "d", "f", 
+				"y", "x", "c", "v", "b", ];
+	boxes.sort(() => Math.random() - 0.5);
+	
+	function generateTableHead(table) {
+	  let thead = table.createTHead();
+	  let row = thead.insertRow();
+	  let headers = ["B", "I", "N", "G", "O"];
+	  for (let key of headers) {
+		let th = document.createElement("th");
+		let text = document.createTextNode(key);
+		th.appendChild(text);
+		row.appendChild(th);
+	  }
+	}
+
+	function generateTable(table) {
+	  for (let i=0; i<5; i++) {
+		let row = table.insertRow();
+		for (let j=0; j<5; j++) {
+		  let cell = row.insertCell();
+		  let text = document.createTextNode(boxes.pop());
+		  cell.appendChild(text);
+		}
+	  }
+	}
+
+
+	let table = document.querySelector("table");
+	generateTable(table); // generate the table first
+	generateTableHead(table); // then the head
+	
+	let tdArr = document.getElementsByTagName("td");
+	for (let i=0; i<tdArr.length; i++) {
+		tdArr[i].addEventListener("click", function() {
+		tdArr[i].style.background="green";
+		})
+	}
+
+
+</script>
+</html>
